@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Diagnostics;
 
 namespace DungeonGame
 {
@@ -7,22 +9,21 @@ namespace DungeonGame
     {
         static void Main(string[] args)
         {
-            int health = 100;
-            int damage = 20;
-            int levels = 0;
+            
+            GameManager gameManager = new GameManager();
+            /*int levels = 0;
             int pry = 1;
             int helmet = 0;
             int chest = 0;
             int pants = 0;
-            int gold = 20;
+            int gold = 20;*/
+
+            /*while (true)
+            {
+                
+            }
             while (true)
             {
-                Console.WriteLine("Dungeon Game");
-                Console.WriteLine("Press \"s\" to start");
-                ConsoleKeyInfo input = Console.ReadKey();
-                if (input.Key==ConsoleKey.S)
-                {
-                    Instructions();
                     Console.WriteLine();
                     Console.WriteLine("You have not eaten since yesterday. You are hungry");
                     string[,] board = Generate();
@@ -35,66 +36,11 @@ namespace DungeonGame
                     chest = stats[5];
                     pants = stats[6];
                     gold = stats[7];
-                }
-            }
-            
-        }
-        static void Instructions()
-        {
-            Console.WriteLine("Commands:");
-            Console.WriteLine("w/a/s/d for moving");
-            Console.WriteLine("quit");
-            Console.WriteLine("You can move on \"+\" tiles.");
-            Console.WriteLine("The \"$\" tiles have treasures which increase your health or damage. To get them you need to have a pry bar or a shoe");
-            Console.WriteLine("The \"x\" tiles have enemies which give you gold and other items. The more gold you get, the more food you can eat.");
-            Console.WriteLine("The player is the \"@\" tile.");
-            Console.WriteLine("You can go to the next dungeon by going to the \"^\" tile.");
-            Console.WriteLine("You can approach enemies from top or bottom from one tile distance or from right from two tile distance!");
-            Console.WriteLine("You can interact with treasure chests from top, bottom or right from one tile distance or left from two tiles distance!");
-            Console.WriteLine("You can interact with the exit only from one tile distance from top!");
-            Console.WriteLine("As time goes, enemies get stronger. Good Luck!");
-        }
-
-        static string[,] Generate() 
-        {
-            Random rng = new Random();
-            int x = rng.Next(4, 10);
-            int y = rng.Next(4, 10);
-            bool once = false;
-            string[,] board = new string[y, x];
-            int uBound0 = board.GetUpperBound(0);
-            int uBound1 = board.GetUpperBound(1);
-            int posExit = rng.Next(x - 3, x-1);
-            for (int i = 0; i <= uBound0; i++)
+            }*/
+            while (true)
             {
-                for (int j = 0; j <= uBound1; j++)
-                {
-                    board[i, j] = "+";
-                    if (i == 0 && once == false && posExit == j)
-                    {
-                        board[i, j] = "^";
-                        once = true;
-                    }
-                    if (once == true)
-                    {
-                        Random rand = new Random();
-                        int a = rand.Next(1, 10);
-                        if (a == 2)
-                        {
-                            board[i, j] = "x";
-                        }
-                        if (a == 7)
-                        {
-                            board[i, j] = "$";
-                        }
-                    }
-                    if (i == y - 1 && posExit == j)
-                    {
-                        board[i, j] = "@";
-                    }
-                }
+                gameManager.Display();
             }
-            return board;
         }
 
         static List<int> Display(string[,] board, int health, int damage, int levels, int pry, int helmet, int chest, int pants, int gold)
@@ -245,6 +191,7 @@ namespace DungeonGame
                                 {
                                     stats.Add(health);
                                     stats.Add(damage);
+                                    levels += 1;
                                     stats.Add(levels);
                                     stats.Add(pry);
                                     stats.Add(helmet);
@@ -262,7 +209,8 @@ namespace DungeonGame
                                     int armorvalue = helmet + chest + pants;
                                     armorvalue = armorvalue * 3;
                                     int dmgtaken = rng.Next(10, 40);
-                                    health = dmgtaken - armorvalue;
+                                    dmgtaken = dmgtaken - armorvalue;
+                                    health = health - dmgtaken;
                                     Console.WriteLine($"Ouch! You took {dmgtaken} from battle!");
                                     int item1 = rng.Next(1, 5);
                                     int gol = rng.Next(10, 40);
@@ -299,7 +247,7 @@ namespace DungeonGame
                                     Console.ReadLine();
                                 }
                             }
-
+                            
                             if (y==i&&x==j)
                             {
 

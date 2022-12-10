@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\source\\repos\\DungeonGame\\DungeonGame\\DungeonGame.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Pictures\\dg\\DungeonGame\\DungeonGame\\DungeonGame.csproj",
       "projectName": "DungeonGame",
-      "projectPath": "C:\\Users\\PC\\source\\repos\\DungeonGame\\DungeonGame\\DungeonGame.csproj",
+      "projectPath": "C:\\Users\\PC\\Pictures\\dg\\DungeonGame\\DungeonGame\\DungeonGame.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\source\\repos\\DungeonGame\\DungeonGame\\obj\\",
+      "outputPath": "C:\\Users\\PC\\Pictures\\dg\\DungeonGame\\DungeonGame\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
       }
     }
   }
