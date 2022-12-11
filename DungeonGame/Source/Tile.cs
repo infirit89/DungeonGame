@@ -20,9 +20,10 @@ namespace DungeonGame
 
         public void Draw() 
         {
-            Console.ForegroundColor = Color;
-            Console.Write(Icon);
-            Console.ForegroundColor = ConsoleColor.White;
+            ScreenBuffer.Write(Icon, Color);
+            //Console.ForegroundColor = Color;
+            //Console.Write(Icon);
+            //Console.ForegroundColor = ConsoleColor.White;
         }
 
         public ConsoleColor Color;

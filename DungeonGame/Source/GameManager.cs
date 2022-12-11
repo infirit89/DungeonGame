@@ -38,22 +38,18 @@ namespace DungeonGame
                 }
                 case GameState.Game:
                 {
-                    //ConsoleKey key = Console.ReadKey().Key;
-                    //if (key == ConsoleKey.R) 
-                    //{
-                        //Console.Clear();
-                        //m_Map = Generate();
-                    //}
+                    ScreenBuffer.Clear();
 
-                    Console.Clear();
                     for (int y = 0; y < m_MapHeight; y++)
                     {
                         for (int x = 0; x < m_MapWidth; x++)
                             m_Map[y, x].Draw();
 
-                        Console.WriteLine();
+                            ScreenBuffer.WriteLine("");
                     }
+
                     m_Player.DisplayStats();
+                    ScreenBuffer.Flush();
 
                     m_Player.Move(m_Map, this);
 
@@ -95,38 +91,35 @@ namespace DungeonGame
             m_Player.Position = new Vector2(exitPosition, m_MapHeight - 1);
         }
 
-        private void MovePlayer() 
-        {
-        }
-
+        
         private void DisplayIntro() 
         {
-            Console.WriteLine("Dungeon Game");
-            Console.WriteLine("Press \"s\" to start");
-            ConsoleKeyInfo input = Console.ReadKey();
+            ScreenBuffer.WriteLine("Dungeon Game");
+            ScreenBuffer.WriteLine("Press \"s\" to start");
+            ScreenBuffer.Flush();
 
-            if (input.Key == ConsoleKey.S) m_State = GameState.Instructions;
+            if (ScreenBuffer.ReadKey() == ConsoleKey.S) m_State = GameState.Instructions;
         }
 
         private void DisplayInstructions()
         {
-            Console.Clear();
-            Console.WriteLine("Commands:");
-            Console.WriteLine("w/a/s/d for moving");
-            Console.WriteLine("quit");
-            Console.WriteLine("You can move on \"+\" tiles.");
-            Console.WriteLine("The \"$\" tiles have treasures which increase your health or damage. To get them you need to have a pry bar or a shoe");
-            Console.WriteLine("The \"x\" tiles have enemies which give you gold and other items. The more gold you get, the more food you can eat.");
-            Console.WriteLine("The player is the \"@\" tile.");
-            Console.WriteLine("You can go to the next dungeon by going to the \"^\" tile.");
-            Console.WriteLine("You can approach enemies from top or bottom from one tile distance or from right from two tile distance!");
-            Console.WriteLine("You can interact with treasure chests from top, bottom or right from one tile distance or left from two tiles distance!");
-            Console.WriteLine("You can interact with the exit only from one tile distance from top!");
-            Console.WriteLine("As time goes, enemies get stronger. Good Luck!");
-            Console.WriteLine("Press space to continue");
+            ScreenBuffer.Clear();
+            ScreenBuffer.WriteLine("Commands:");
+            ScreenBuffer.WriteLine("w/a/s/d for moving");
+            //ScreenBuffer.WriteLine("quit");
+            ScreenBuffer.WriteLine("You can move on \"+\" tiles.");
+            ScreenBuffer.WriteLine("The \"$\" tiles have treasures which increase your health or damage. To get them you need to have a pry bar or a shoe");
+            ScreenBuffer.WriteLine("The \"x\" tiles have enemies which give you gold and other items. The more gold you get, the more food you can eat.");
+            ScreenBuffer.WriteLine("The player is the \"@\" tile.");
+            ScreenBuffer.WriteLine("You can go to the next dungeon by going to the \"^\" tile.");
+            ScreenBuffer.WriteLine("You can approach enemies from top or bottom from one tile distance or from right from two tile distance!");
+            ScreenBuffer.WriteLine("You can interact with treasure chests from top, bottom or right from one tile distance or left from two tiles distance!");
+            ScreenBuffer.WriteLine("You can interact with the exit only from one tile distance from top!");
+            ScreenBuffer.WriteLine("As time goes, enemies get stronger. Good Luck!");
+            ScreenBuffer.WriteLine("Press space to continue");
+            ScreenBuffer.Flush();
 
-            ConsoleKey input = Console.ReadKey().Key;
-            if (input == ConsoleKey.Spacebar) m_State = GameState.Game;
+            if (ScreenBuffer.ReadKey() == ConsoleKey.Spacebar) m_State = GameState.Game;
         }
 
         public GameState State => m_State;

@@ -20,12 +20,29 @@ namespace DungeonGame
         private void InteractWithChest() 
         {
             const int prychance = 7;
-            Console.WriteLine("You try to pry the treasure chest!");
-            Console.WriteLine($"Enter a num between {1} and {prychance - 1}");
-            int n = int.Parse(Console.ReadLine());
-                
+            ScreenBuffer.WriteLine("You try to pry the treasure chest!");
+            ScreenBuffer.WriteLine($"Enter a num between {1} and {prychance - 1}");
+            int currentCursorTop = ScreenBuffer.CursorTop;
+            ScreenBuffer.Flush();
+
+            int number = 0;
+            while (true)
+            {
+                Console.SetCursorPosition(0, currentCursorTop);
+                bool success = int.TryParse(Console.ReadLine(), out number);
+                if (success) break;
+                else 
+                {
+                    ScreenBuffer.WriteLine("The input wasn't a number! Press any key to continue!", ConsoleColor.Red);
+                    ScreenBuffer.Flush();
+                    ScreenBuffer.ReadKey();
+                    Console.SetCursorPosition(0, currentCursorTop);
+                    Console.Write(new string(' ', ScreenBuffer.Width - 1));
+                }
+            }
+            
             int r = m_Rng.Next(1, prychance);
-            if (r == n || m_Pry == 3)
+            if (r == number || m_Pry == 3)
             {
                 int chanceToGetHealth = m_Rng.Next(0, 2);
                 if (chanceToGetHealth == 0)
@@ -33,13 +50,15 @@ namespace DungeonGame
                 else
                     Damage += 10;
 
-                Console.WriteLine("Success! You pried the chest open! Press any key to continue!");
-                Console.ReadLine();
+                ScreenBuffer.WriteLine("Success! You pried the chest open! Press any key to continue!");
+                ScreenBuffer.Flush();
             }
             else
             {
-                Console.WriteLine("The chest didn't budge! Good luck next time!");
+                ScreenBuffer.WriteLine("The chest didn't budge! Good luck next time! Press any key to continue!");
+                ScreenBuffer.Flush();
             }
+            ScreenBuffer.ReadKey();
         }
 
         private void InteractWithDoor(GameManager gameManager) 
@@ -54,7 +73,7 @@ namespace DungeonGame
             int dmgtaken = m_Rng.Next(10, 40);
             dmgtaken = dmgtaken - armorvalue;
             Health = Health - dmgtaken;
-            Console.WriteLine($"Ouch! You took {dmgtaken} from battle!");
+            ScreenBuffer.WriteLine($"Ouch! You took {dmgtaken} from battle!");
             int item1 = m_Rng.Next(1, 4);
             int gol = m_Rng.Next(10, 40);
             m_Gold += gol;
@@ -79,8 +98,9 @@ namespace DungeonGame
                 //Console.WriteLine($"Congrats! You got {pantsItems[pants]}!");
                 //pantss = pantsItems[pants];
             }
-            Console.WriteLine("Press any key to continue!");
-            Console.ReadLine();
+            ScreenBuffer.WriteLine("Press any key to continue!");
+            ScreenBuffer.Flush();
+            ScreenBuffer.ReadKey();
         }
 
         public void Move(Tile[,] map, GameManager gameManager)
@@ -91,10 +111,8 @@ namespace DungeonGame
 
             int directionX = 0, directionY = 0;
 
-            ConsoleKey key = Console.ReadKey().Key;
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write("");
-
+            ConsoleKey key = ScreenBuffer.ReadKey();
+            
             switch (key)
             {
                 case ConsoleKey.W:
@@ -141,9 +159,9 @@ namespace DungeonGame
 
         public void DisplayStats() 
         {
-            Console.WriteLine();
-            Console.WriteLine("hp - " + Health);
-            Console.WriteLine("dmg - " + Damage);
+            ScreenBuffer.WriteLine("");
+            ScreenBuffer.WriteLine("hp - " + Health);
+            ScreenBuffer.WriteLine("dmg - " + Damage);
             //Console.WriteLine("levels completed - " + levels);
             //Console.WriteLine("gear:");
             //Console.WriteLine("pry - " + pryy);

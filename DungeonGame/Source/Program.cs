@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Diagnostics;
+using System.IO;
 
 namespace DungeonGame
 {
@@ -11,7 +12,8 @@ namespace DungeonGame
         {
              
             GameManager gameManager = new GameManager();
-
+            ScreenBuffer.Init(Console.WindowWidth, Console.WindowHeight);
+            Console.CursorVisible = false;
             /*int levels = 0;
             int pry = 1;
             int helmet = 0;
