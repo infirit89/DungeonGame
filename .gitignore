@@ -1,0 +1,27 @@
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Debug Files
+*.pdb
+
+#.vs
+.vs
+
+#output folder and obj output foler
+bin/
+obj/
+
+
