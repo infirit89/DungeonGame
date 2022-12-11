@@ -9,8 +9,9 @@ namespace DungeonGame
     {
         static void Main(string[] args)
         {
-            
+             
             GameManager gameManager = new GameManager();
+
             /*int levels = 0;
             int pry = 1;
             int helmet = 0;
@@ -158,25 +159,21 @@ namespace DungeonGame
                                 if (i == y - 1 && j == x)
                                 {
                                     Console.WriteLine("You try to pry the treasure chest!");
-                                    if (pry==0||pry==1||pry==2)
+                                    Console.WriteLine($"Enter a num between {1} and {prychance-1}");
+                                    int n = int.Parse(Console.ReadLine());
+                                    int r = rng.Next(1, prychance);
+                                    if (r==n||pry==3)
                                     {
-                                        Console.WriteLine($"Enter a num between {1} and {prychance-1}");
-                                        int n = int.Parse(Console.ReadLine());
-                                        int r = rng.Next(1, prychance);
-                                        if (r==n||pry==3)
+                                        if (rand == 1)
                                         {
-                                            if (rand == 1)
-                                            {
-                                                health += 30;
-                                            }
-                                            else
-                                            {
-                                                damage += 10;
-                                            }
-                                            Console.WriteLine("Success! You pried the chest open! Press any key to continue!");
-                                            Console.ReadLine();
+                                            health += 30;
                                         }
-
+                                        else
+                                        {
+                                            damage += 10;
+                                        }
+                                        Console.WriteLine("Success! You pried the chest open! Press any key to continue!");
+                                        Console.ReadLine();
                                     }
                                     else
                                     {
@@ -206,45 +203,7 @@ namespace DungeonGame
                             {
                                 if (i == y - 1 && j == x)
                                 {
-                                    int armorvalue = helmet + chest + pants;
-                                    armorvalue = armorvalue * 3;
-                                    int dmgtaken = rng.Next(10, 40);
-                                    dmgtaken = dmgtaken - armorvalue;
-                                    health = health - dmgtaken;
-                                    Console.WriteLine($"Ouch! You took {dmgtaken} from battle!");
-                                    int item1 = rng.Next(1, 5);
-                                    int gol = rng.Next(10, 40);
-                                    gold += gol;
-                                    if (item1 == 1)
-                                    {
-                                        int value = rng.Next(helmet, 4);
-                                        helmet = value;
-                                        Console.WriteLine($"Congrats! You got {helmetItems[helmet]}!");
-                                        helmett = helmetItems[helmet];
-                                    }
-                                    if (item1 == 2)
-                                    {
-                                        int value = rng.Next(chest, 4);
-                                        chest = value;
-                                        Console.WriteLine($"Congrats! You got {chestItems[chest]}!");
-                                        chestt = chestItems[chest];
-                                    }
-                                    if (item1 == 3)
-                                    {
-                                        int value = rng.Next(pants, 4);
-                                        pants = value;
-                                        Console.WriteLine($"Congrats! You got {pantsItems[pants]}!");
-                                        pantss = pantsItems[pants];
-                                    }
-                                    if (item1 == 4)
-                                    {
-                                        int value = rng.Next(pants, 4);
-                                        pry = value;
-                                        Console.WriteLine($"Congrats! You got {pryItems[pry]}!");
-                                        pryy = pryItems[pry];
-                                    }
-                                    Console.WriteLine("Press any key to continue!");
-                                    Console.ReadLine();
+                                    
                                 }
                             }
                             
@@ -342,11 +301,6 @@ namespace DungeonGame
                                     Console.ReadLine();
                                 }
                             }
-                            if (y == i && x == j)
-                                {
-                                    board[y + 1, x] = "@";
-                                    board[y, x] = "+";
-                            }
                             }
                             Console.WriteLine();
                         }
@@ -434,12 +388,6 @@ namespace DungeonGame
                                     Console.ReadLine();
                                 }
                             }
-
-                            if (y == i && x == j)
-                            {
-                                board[y,x+1] = "@";
-                                board[y, x] = "+";
-                            }
                         }
                         Console.WriteLine();
                     }
@@ -483,11 +431,6 @@ namespace DungeonGame
                                         Console.WriteLine("The chest didn't budge! Good luck next time!");
                                     }
                                 }
-                            }
-                            if (y == i && x == j)
-                            {
-                                board[y, x -1] = "@";
-                                board[y, x] = "+";
                             }
                         }
                         Console.WriteLine();

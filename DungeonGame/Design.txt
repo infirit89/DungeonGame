@@ -1,0 +1,12 @@
+@$
+pry++
+
+lockpicking - when you try to open a chest
+melee - when you batle an enemy
+defense - when you take damage
+
+lockpicking
+lockpick_points
+lockpick_maxpoints
+
+melee 

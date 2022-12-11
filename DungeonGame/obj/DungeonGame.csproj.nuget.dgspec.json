@@ -1,21 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Pictures\\dg\\DungeonGame\\DungeonGame\\DungeonGame.csproj": {}
+    "C:\\Users\\georg\\Documents\\Projects\\DungeonGame\\DungeonGame\\DungeonGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Pictures\\dg\\DungeonGame\\DungeonGame\\DungeonGame.csproj": {
+    "C:\\Users\\georg\\Documents\\Projects\\DungeonGame\\DungeonGame\\DungeonGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Pictures\\dg\\DungeonGame\\DungeonGame\\DungeonGame.csproj",
+        "projectUniqueName": "C:\\Users\\georg\\Documents\\Projects\\DungeonGame\\DungeonGame\\DungeonGame.csproj",
         "projectName": "DungeonGame",
-        "projectPath": "C:\\Users\\PC\\Pictures\\dg\\DungeonGame\\DungeonGame\\DungeonGame.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Pictures\\dg\\DungeonGame\\DungeonGame\\obj\\",
+        "projectPath": "C:\\Users\\georg\\Documents\\Projects\\DungeonGame\\DungeonGame\\DungeonGame.csproj",
+        "packagesPath": "C:\\Users\\georg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\georg\\Documents\\Projects\\DungeonGame\\DungeonGame\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\georg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -54,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
         }
       }
     }
