@@ -5,8 +5,12 @@ lockpicking - when you try to open a chest
 melee - when you batle an enemy
 defense - when you take damage
 
+lockpicking + 1
+lockpick_points = 0 + 2
+lockpick_points + 2 = 4
+
 lockpicking
 lockpick_points
-lockpick_maxpoints
+lockpick_maxpoints = 2
 
 melee 

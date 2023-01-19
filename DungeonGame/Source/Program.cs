@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace DungeonGame
 {
@@ -10,9 +11,11 @@ namespace DungeonGame
     {
         static void Main(string[] args)
         {
-             
+
             GameManager gameManager = new GameManager();
-            ScreenBuffer.Init(Console.WindowWidth, Console.WindowHeight);
+            Console.WindowWidth = 40;
+            Console.WindowHeight = 20;
+			ScreenBuffer.Init(Console.WindowWidth, Console.WindowHeight);
             Console.CursorVisible = false;
             /*int levels = 0;
             int pry = 1;
@@ -40,9 +43,12 @@ namespace DungeonGame
                     pants = stats[6];
                     gold = stats[7];
             }*/
-            while (true)
+
+            while (true) 
             {
+                ScreenBuffer.Clear();
                 gameManager.Display();
+                ScreenBuffer.Flush();
             }
         }
 

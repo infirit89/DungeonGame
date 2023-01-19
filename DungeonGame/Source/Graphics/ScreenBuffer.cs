@@ -21,7 +21,7 @@ namespace DungeonGame
 
         public static void Init(int width, int height) 
         {
-            s_ScreenBufferArray = new ScreenBufferElement[height, width];
+            s_ScreenBufferArray = new ScreenBufferElement[height + 1, width + 1];
             Width = s_ScreenBufferArray.GetLength(1); Height = s_ScreenBufferArray.GetLength(0);
             CursorTop = 0; CursorLeft = 0;
         }
@@ -57,6 +57,15 @@ namespace DungeonGame
             CursorLeft = left;
             CursorTop = top;
         }
+
+        public static void SetDimensions(int width, int height) 
+        {
+            Console.WindowWidth = width;
+			Console.WindowHeight = height;
+			s_ScreenBufferArray = new ScreenBufferElement[height + 1, width + 1];
+			Width = s_ScreenBufferArray.GetLength(1); Height = s_ScreenBufferArray.GetLength(0);
+			CursorTop = 0; CursorLeft = 0;
+		}
 
         public static void Clear()
         {

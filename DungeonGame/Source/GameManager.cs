@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Numerics;
+using DungeonGame.Source;
 
 namespace DungeonGame
 {
@@ -19,7 +20,10 @@ namespace DungeonGame
         {
             m_State = GameState.Intro;
             m_Player = new Player(PLAYER_HEALTH, PLAYER_DAMAGE);
-            GenerateNewMap();
+
+            m_MapWidth = 5;
+			m_MapHeight = 5;
+			GenerateNewMap();
         }
 
         public void Display() 
@@ -38,8 +42,6 @@ namespace DungeonGame
                 }
                 case GameState.Game:
                 {
-                    ScreenBuffer.Clear();
-
                     for (int y = 0; y < m_MapHeight; y++)
                     {
                         for (int x = 0; x < m_MapWidth; x++)
@@ -49,7 +51,6 @@ namespace DungeonGame
                     }
 
                     m_Player.DisplayStats();
-                    ScreenBuffer.Flush();
 
                     m_Player.Move(m_Map, this);
 
@@ -65,8 +66,8 @@ namespace DungeonGame
         public void GenerateNewMap()
         {
             Random rng = new Random();
-            m_MapWidth = rng.Next(4, 10);
-            m_MapHeight = rng.Next(4, 10);
+            //m_MapWidth = rng.Next(4, 10);
+            //m_MapHeight = rng.Next(4, 10);
             m_Map = new Tile[m_MapHeight, m_MapWidth];
             int exitPosition = rng.Next(m_MapWidth - 3, m_MapWidth - 1);
 
@@ -96,19 +97,20 @@ namespace DungeonGame
         {
             ScreenBuffer.WriteLine("Dungeon Game");
             ScreenBuffer.WriteLine("Press \"s\" to start");
-            ScreenBuffer.Flush();
 
-            if (ScreenBuffer.ReadKey() == ConsoleKey.S) m_State = GameState.Instructions;
+            if (Input.IsKeyPressed(ConsoleKey.S)) 
+            {
+                m_State = GameState.Instructions;
+				ScreenBuffer.SetDimensions(120, 15);
+			}
         }
 
         private void DisplayInstructions()
         {
-            ScreenBuffer.Clear();
             ScreenBuffer.WriteLine("Commands:");
             ScreenBuffer.WriteLine("w/a/s/d for moving");
-            //ScreenBuffer.WriteLine("quit");
             ScreenBuffer.WriteLine("You can move on \"+\" tiles.");
-            ScreenBuffer.WriteLine("The \"$\" tiles have treasures which increase your health or damage. To get them you need to have a pry bar or a shoe");
+			ScreenBuffer.WriteLine("The \"$\" tiles have treasures which increase your health or damage. To get them you need to have a pry bar or a shoe");
             ScreenBuffer.WriteLine("The \"x\" tiles have enemies which give you gold and other items. The more gold you get, the more food you can eat.");
             ScreenBuffer.WriteLine("The player is the \"@\" tile.");
             ScreenBuffer.WriteLine("You can go to the next dungeon by going to the \"^\" tile.");
@@ -117,9 +119,12 @@ namespace DungeonGame
             ScreenBuffer.WriteLine("You can interact with the exit only from one tile distance from top!");
             ScreenBuffer.WriteLine("As time goes, enemies get stronger. Good Luck!");
             ScreenBuffer.WriteLine("Press space to continue");
-            ScreenBuffer.Flush();
 
-            if (ScreenBuffer.ReadKey() == ConsoleKey.Spacebar) m_State = GameState.Game;
+            if (Input.IsKeyPressed(ConsoleKey.Spacebar)) 
+            {
+                m_State = GameState.Game;
+                ScreenBuffer.SetDimensions(40, 20);
+            }
         }
 
         public GameState State => m_State;
